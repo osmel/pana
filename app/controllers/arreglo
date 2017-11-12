@@ -1,0 +1,17 @@
+muy bien
+Vale checate de Calim eso, o se prefieres la de validacion de juego de Calim, la que te acomode mas.... dejo por aqui el requerimiento para analizarlo si hay alguna duda....
+1) El usuario registra un ticket
+le pide 4 datos: 
+	1) Ticket,  
+	2) Monto, 
+	3) Fecha y 
+	4) Puntos obtenidos con la compra...
+entonces que me dicen ellos
+pasa al juego
+y puedes sacar imagenes diferentes o imagenes iguales 
+esas son las dos variantes del juego
+entonces....
+	Opcion 1... Si sacas imagenes diferentes, Te llevas 25 pts + Puntos obtenidos en la compra
+					Entonces... EJEMPLO: CASO 1... Registro mi ticket y coloco que gane 100 puntos por la compra.... Juego y salen diferntes las imagenes, mi resultado seria 25 pts + 100 de los obtenidos por la compra
+	Opcion 2.. Si sacas las 3 figuras iguales, Duplicas Puntos obtenidos en la compra. YA NO SUMARIAS LOS 50 que le dabamos antes...
+					EJEMPLO CASO 2:  Registro mi ticket y coloco que gane 100 puntos por la compra.... Juego y salen IGUALES las 3 imagenes , mi resultado seria 100 de los obtenidos por la compra x 2 = 200 pts

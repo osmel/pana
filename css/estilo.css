@@ -1,0 +1,178 @@
+#iframeForm{
+	font-family: 'Open Sans', sans-serif !important;
+	background: #e4e4e4;
+	/*-webkit-border-radius: 5px;*/
+	/*border-radius: 5px;*/
+	padding: 20px;
+	position: relative;
+	padding-bottom: 15px;
+}
+body{
+	/*background: #e4e4e4 !important;*/
+}
+.boton{
+	float: left;
+  width: 100%;
+  -webkit-appearance: none;
+  background-color: #41e0f2;
+  border: 0px;
+  color: #ffffff;
+  padding: 4px;
+  border-radius: 0px;
+}
+#id_campus, #id_nivel, #id_programa{
+	/*background-color: transparent;*/
+  border: 0px;
+  width: 100%;
+  /*background-color: #ff1999;*/
+  background: rgba(239, 224, 224, -0.5);
+  border: solid 1px;
+  /*margin: 4px 0px 4px 3px;*/
+}
+label.error{
+	margin-bottom: 0px !important;
+	text-align: right;
+}
+.input--kaede{
+	margin: 2px 0px 6px 0px !important;
+}
+.input__label{
+	margin-bottom: 0px !important;
+}
+.input__label-content--kaede{
+	padding: 0px !important;
+}
+#iframeForm label {
+float: left;
+  color: red !important;
+  text-align: right;
+ 
+	
+}
+@media only screen and (max-width: 1279px){
+	#fomaction h2{
+		font-size: 80px !important;
+	}
+}
+#iframeForm input {
+	  display: block;
+	  background: #ffffff;
+	  width: 100%;
+	  padding: 1px 10px;
+	  font-size: 15px;
+	  line-height: 1.467;
+	  color: #34495e;
+	  border: 0px solid #bdc3c7;
+	  border-radius: 0px;
+	  margin-bottom: 8px;
+	  box-shadow: none;
+	-webkit-transition: border .25s linear,color .25s linear,background-color .25s linear;
+	transition: border .25s linear,color .25s linear,background-color .25s linear;
+}
+.sin-bordes{
+	padding-right: 0px !important;	
+	padding-left: 0px !important;
+}
+#iframeForm select {
+background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50px' height='50px'><polyline points='46.139,15.518 25.166,36.49 4.193,15.519'/></svg>");
+  background-color:#ffffff;
+  background-repeat:no-repeat;
+  background-position: right 10px top 7px;
+  background-size: 16px 16px;
+  padding: 1px 10px;
+  padding-right: 40px; 
+  width: 100% !important;
+  margin-bottom: 8px;
+  font-size:15px;
+  color:#ababab;
+  text-align:center;
+  border-radius:0px;
+  display: block;
+  /*-webkit-border-radius:3px;*/
+  -webkit-appearance: none;
+  border:0;
+  outline:0;
+  -webkit-transition:0.3s ease all;
+	   -moz-transition:0.3s ease all;
+	    -ms-transition:0.3s ease all;
+	     -o-transition:0.3s ease all;
+	        transition:0.3s ease all;
+	width: 220px;
+	-moz-appearance: none;
+}
+
+#iframeForm a {
+	color: #fff;
+}
+
+#iframeForm button {
+	color: #ffffff;
+	  width: 100%;
+	  font-size: 16px;
+	  background-color: #0059A5;
+	  border: none;
+	   /* margin-top: 10px;	*/
+	   padding: 0px;
+}
+#tabla_aspirantes, #tabla_test, #tabla_calculadora, .tabla_ordenadas{
+	color: #000000 !important;
+}
+#iframeForm .row_ele {
+	margin: 15px 0;
+	
+}
+#aviso{
+	color: #ffffff !important;
+}
+#alerta{
+	font-size: 10px;
+  height: 20px;
+  float: right !important;
+  padding-right: 28px;
+  color: #ffffff;
+  font-weight: bold;
+}
+#iframeForm p{
+	width: 70%;
+	float: left;
+	margin-top: 38px;
+	font-size: 12px;
+	text-align: center;
+	color: #2e9e8c;
+}
+.aviso{
+	font-size: 16px !important;
+  color: #fff;
+}
+#iframeForm h3{	
+	color: #00254e;
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+
+.val-error {
+	color: #ffa800 !important;
+}
+label{
+	display: block !important;
+}
+.modal-body{
+	color: #000000;
+}
+label.error{
+	color:black;
+	  /*margin: -28px -40px 0px -26px;*/
+	  
+	  font-size: 14px;
+  		font-weight: lighter;
+	  /*height: 10px;*/
+	  /*float: right !important;
+	  padding-right: 28px;*/
+}
+@media (max-width: 359px){
+	form label.error{
+		/*text-align: left !important;*/
+		color: #ffffff !important;
+		/*margin: -12px 0px 0px 12px !important; */
+	}
+}

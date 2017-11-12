@@ -1,0 +1,811 @@
+/*File not found: K:\Coco\Sala uno\Landing page\Html\css\styles.css
+
+This file is an empty place holder.*/
+
+/*+clearfix {*/
+
+#full-page:after, #spots:after
+
+{
+
+	content: ".";
+
+	display: block;
+
+	height: 0;
+
+	clear: both;
+
+	visibility: hidden;
+
+	font-size: 0;
+
+}
+
+#full-page, #spots
+
+{
+
+	display: inline-block;
+
+}
+
+#full-page, #spots
+
+{
+
+	/*\*/
+
+	display: block;
+
+	/**/
+
+	-height: 1px;
+
+}
+
+/*+}*/
+
+HTML
+
+{
+
+	background-color: #00778B;
+
+	color: #FFF;
+
+}
+
+/*[clearfix]*/#full-page
+
+{
+
+	width: 960px;
+
+	margin: 0 auto;
+
+	background-image: url("../images/back.png");
+
+	background-repeat: repeat-y;
+
+}
+
+#outer
+
+{
+
+	margin: 17px 0px 0px;
+
+	background-image: url("../images/back.png");
+
+	background-repeat: repeat-y;
+
+	background-position: right;
+
+	width: 100%;
+
+}
+
+#header
+
+{
+
+	text-align: right;
+
+	width: 960px;
+
+	margin: 0 auto;
+
+}
+
+#liberate
+
+{
+
+	float: left;
+
+	margin-left: 40px;
+
+	margin-right: 40px;
+
+	border-bottom: 1px solid #FFFFFF;
+
+}
+
+#space
+
+{
+
+	background-image: url(../images/blue.png);
+
+}
+
+#formulario-big
+
+{
+
+	background-color: #25CBD3;
+
+	float: left;
+
+	width: 505px;
+
+	/*+border-radius:20px 0 0 20px;*/
+
+	-moz-border-radius: 20px 0 0 20px;
+
+	-webkit-border-radius: 20px 0 0 20px;
+
+	-khtml-border-radius: 20px 0 0 20px;
+
+	border-radius: 20px 0 0 20px;
+
+	padding: 15px 0 15px 15px;
+
+	background-image: url(../images/comic.png);
+
+	background-position: bottom left;
+
+	background-repeat: no-repeat;
+
+	height: 780px;
+
+}
+
+#page-wrap
+
+{
+
+	width: 960px;
+
+	margin: 0 auto;
+
+}
+
+#globo
+
+{
+
+	background-color: #FFF;
+
+	/*+border-radius:10px 10px 30px 30px;*/
+
+	-moz-border-radius: 10px 10px 30px 30px;
+
+	-webkit-border-radius: 10px 10px 30px 30px;
+
+	-khtml-border-radius: 10px 10px 30px 30px;
+
+	border-radius: 10px 10px 30px 30px;
+
+	height: 538px;
+
+	padding-left: 25px;
+
+	padding-top: 20px;
+
+}
+
+#formulario
+
+{
+
+}
+
+.azul-claro
+
+{
+
+	color: #25CBD3;
+
+	font-size: 29px;
+
+	margin-bottom: 8px;
+
+}
+
+LABEL
+
+{
+
+	display: block;
+
+	color: #01758C !important;
+
+}
+
+.turquesa
+
+{
+
+	color: #00778B;
+
+}
+
+#full-spotlight
+
+{
+
+	background-color: #3392A2;
+
+}
+
+/*[clearfix]*/#spots
+
+{
+
+	width: 960px;
+
+	margin: 0 auto;
+
+}
+
+#spots IMG
+
+{
+
+	float: left;
+
+	margin-left: 15px;
+
+}
+
+.firstimage
+
+{
+
+	margin-left: 40px !important;
+
+}
+
+#footer
+
+{
+
+	width: 960px;
+
+	margin: 0 auto;
+
+	height: 120px;
+
+}
+
+#contact
+
+{
+
+	float: left;
+
+	margin-left: 40px;
+
+}
+
+#derechos
+
+{
+
+	float: right;
+
+	font-size: 12px;
+
+	margin-top: 30px;
+
+}
+
+#campos-left
+
+{
+
+	float: left;
+
+	width: 218px;
+
+	margin-right: 15px;
+
+	margin-bottom: 15px;
+
+}
+
+#campos-right
+
+{
+
+	float: right;
+
+	width: 214px;
+
+	padding-right: 0px;
+
+	margin-right: 27px;
+
+	margin-bottom: 15px;
+
+}
+
+HR
+
+{
+
+	clear: both;
+
+	display: none;
+
+}
+
+#derechos A:link, #derechos A:visited
+
+{
+
+	color: #FFF;
+
+	text-decoration: none;
+
+}
+
+#derechos A:focus, #derechos A:hover, #derechos A:active
+
+{
+
+	color: #FFF;
+
+	text-decoration: underline;
+
+}
+
+#llenar
+
+{
+
+	float: right;
+
+	text-align: center;
+
+}
+
+.smalltext
+
+{
+
+	font-size: 13px;
+
+}
+
+H2
+
+{
+
+	display: block;
+
+	clear: both;
+
+	margin-left: 40px;
+
+}
+
+P, LABEL, INPUT
+
+{
+
+	font-family: din-regular, arial, sans-serif;
+
+}
+
+.typo-bold
+
+{
+
+	font-family: din-bold, arial, sans-serif;
+
+}
+
+.enviado
+
+{
+
+	font-size: 31.1pt;
+
+	margin-top: 19px;
+
+	margin-bottom: 76px;
+
+}
+
+#liberate-text
+
+{
+
+	margin-left: 20px;
+
+	line-height: 1.6;
+
+	font-size: 21px;
+
+}
+
+#liberate .lentes
+
+{
+
+	border-bottom: 1px solid #FFF;
+
+	margin-bottom: 15px;
+
+	margin-top: -25px;
+
+}
+
+.agenda
+
+{
+
+	font-size: 28px;
+
+	height: 65px;
+
+	margin-left: 9px;
+
+}
+
+#liberate H3
+
+{
+
+	font-size: 15.8pt;
+
+	/*[empty]margin-top:;*/
+
+}
+
+#people
+
+{
+
+	margin-top: 11px;
+
+	float: left;
+
+	margin: 15px 0px 22px;
+
+}
+
+.med-size
+
+{
+
+	font-size: 16px;
+
+	margin-left: 70px;
+
+	margin-top: 22px;
+
+	line-height: 1.3;
+
+}
+
+#beneficios H2
+
+{
+
+	margin-top: 23px;
+
+	font-size: 18.8pt;
+
+	margin-bottom: 23px;
+
+}
+
+.smalltypo
+
+{
+
+	font-size: 12px;
+
+	margin-top: 3px;
+
+}
+
+.salauno
+
+{
+
+	margin-top: 10px;
+
+	margin-bottom: 8px;
+
+}
+
+INPUT
+
+{
+
+	font-family: din-regular, arial, sans-serif;
+
+	/*+border-radius:9px;*/
+
+	-moz-border-radius: 9px;
+
+	-webkit-border-radius: 9px;
+
+	-khtml-border-radius: 9px;
+
+	border-radius: 9px;
+
+	border: none;
+
+	border: 1px solid #00778B;
+
+	height: 33px;
+
+	width: 197px;
+
+	padding: 0 8px;
+
+	color: #00404A;
+
+}
+
+.back{
+
+	border: 1px solid white;
+
+	border-radius: 10px;
+
+	padding: 20px 30px;
+
+	text-decoration: none;
+
+	transition: all 0.2s;
+
+	-ms-transition: all 0.2s;
+
+	-moz-transition: all 0.2s;
+
+	-o-transition: all 0.2s;
+
+	-wekbit-transition: all 0.2s;
+
+}
+
+A.back:link, A.back:visited
+
+{
+
+	color: #FFF;
+
+	text-decoration: none;
+
+	font-size: 20px;
+
+}
+
+.back:hover{
+
+	background-color: white;
+
+	color: #24CBD3 !important;
+
+	transition: all 0.2s;
+
+	-ms-transition: all 0.2s;
+
+	-moz-transition: all 0.2s;
+
+	-o-transition: all 0.2s;
+
+	-wekbit-transition: all 0.2s;
+
+}
+
+TEXTAREA
+
+{
+
+	width: 432px;
+
+	font-family: din-regular, arial, sans-serif;
+
+	/*+border-radius:9px;*/
+
+	-moz-border-radius: 9px;
+
+	-webkit-border-radius: 9px;
+
+	-khtml-border-radius: 9px;
+
+	border-radius: 9px;
+
+	border: none;
+
+	border: 1px solid #00778B;
+
+	height: 100px;
+
+	padding: 10px;
+
+	font-size: 14px;
+
+	color: #00404A;
+
+}
+
+LABEL
+
+{
+
+	margin: 8px 0;
+
+	font-family: arial, helvetica, sans-serif !important;
+
+	font-weight: 500;
+
+}
+
+#globo A:link, #globo A:visited
+
+{
+
+	color: #00778B;
+
+	text-decoration: none;
+
+	clear: both;
+
+	font-family: din-regular, arial, sans-serif;
+
+	font-size: 9.4pt;
+
+	float: left;
+
+	margin-top: 19px;
+
+	margin-left: 4px;
+
+}
+
+#globo A:hover, #globo A:focus, #globo A:active
+
+{
+
+	text-decoration: underline;
+
+}
+
+#instruccion
+
+{
+
+	margin-top: 12px;
+
+	font-size: 25px;
+
+}
+
+#consulta
+
+{
+
+	margin-top: 14px;
+
+}
+
+#valorada
+
+{
+
+	margin-top: 11px;
+
+}
+
+INPUT#enviar
+
+{
+
+	background-color: #00778B;
+
+	float: right;
+
+	color: #FFF;
+
+	font-family: Arial, helvetica, sans-serif;
+
+	text-transform: uppercase;
+
+	margin-right: 26px;
+
+	margin-top: 9px;
+
+	width: 110px;
+
+	/*+border-radius:3px;*/
+
+	-moz-border-radius: 3px;
+
+	-webkit-border-radius: 3px;
+
+	-khtml-border-radius: 3px;
+
+	border-radius: 3px;
+
+	font-size: 15px;
+
+	font-weight: bold;
+
+}
+
+INPUT#enviar:hover
+
+{
+
+	background-color: #00444F;
+
+}
+
+#beneficios
+
+{
+
+	width: 960px;
+
+	margin: 0 auto;
+
+}
+
+DIV#thanks
+
+{
+
+	background-color: #24CBD3;
+
+	/*+border-radius:25px;*/
+
+	-moz-border-radius: 25px;
+
+	-webkit-border-radius: 25px;
+
+	-khtml-border-radius: 25px;
+
+	border-radius: 25px;
+
+	padding: 68px 20px 72px;
+
+	text-align: center;
+
+	margin: 0 auto;
+
+	margin-top: 50px;
+
+	width: 700px;
+
+}
+
+.masinfo{
+
+	width: 100% !important;
+
+	padding: 0;
+
+	background-color: #3392A2;
+
+}
+
+.ancho-fijo{width: 960px; margin: auto; margin-top: 100px}
+
+.val-error{
+	color:#fff;
+	position:absolute;
+	margin-left:0;
+	margin-top: 0px;
+	padding-left:10px;
+	padding-right:10px;
+	background-color:#cd2f2f;
+	background-position:left center;
+	background-repeat:no-repeat;
+	text-align:center;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px
+}
+
+
+#iframeForm label{
+	font-family: 'Open Sans', sans-serif !important;
+}
