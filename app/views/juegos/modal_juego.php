@@ -1,36 +1,47 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
- 
- $cantidad_puntos="100";
-
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<?php
+ 	if (!isset($retorno)) {
+      	$retorno ="record"."/".$this->session->userdata('id_participante');
+    }
+	$hidden = array('tiempo'=>$tiempo,'redes'=>$redes,'juego'=>$juego); 
  ?>
 
 	<div class="modal-header felicidadesmodal">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		
 	</div>
 	<div class="modal-body felicidadessi" style="background-image:url('<?php echo base_url()?>img/felicidades1.png');    background-size: cover;">
-				
 				<h1 class="felic">FELICIDADES</h1>
 				<?php 
 				echo '<h4 class="text-center puntos-ganados">';
-					echo 'GANA 100 PUNTOS solo por compartir';
+					echo 'GANASTE '.$total_puntos.' PUNTOS';
 				echo '</h4>';
 				?>
 
-				
+					
 				 <button onclick="myFacebookLogin()" style="background-color: transparent; border: none; margin: 0 auto; display: block;">
-					<img src="<?php echo base_url().$this->session->userdata('c22'); ?>" class="img-responsive" style="margin:3px auto">
+					<img src="<?php echo base_url()?>img/compartir.png" class="img-responsive" style="margin:3px auto">
 				</button> 
 			
 		<div class="alert" id="messagesModal"></div>
 	</div>
 	<div class="modal-footer">
-		
+		<!-- <button class="btn btn-danger" name="<?php echo $retorno; ?>" id="deleteUserSubmit">SI</button> -->
 	</div>
+
+
+
+	<input type="hidden" id="juego" name="juego" value="<?php echo $juego; ?>">
+	<input type="hidden" id="redes" name="redes" value="<?php echo $redes; ?>">
+	<input type="hidden" id="tiempo" name="tiempo" value="<?php echo $tiempo; ?>">
+	<input type="hidden" id="total_puntos" name="total_puntos" value="<?php echo $total_puntos; ?>">
+
 
 
 
 <script type="text/javascript">
 
+var $cantidad_puntos="100";
    
 
    window.fbAsyncInit = function() {
@@ -55,7 +66,7 @@
 				      name: 'Vamonos a españa con Calimax',
 				      link: 'https://www.vamonosaespanaconcalimax.com',
 				      picture: 'https://www.vamonosaespanaconcalimax.com/img/pepsi_fbshare.jpg',
-				      caption: 'Vigencia de la promoción: del 1 de Septiembre al 23 de Octubre de 2017',
+				      caption: 'Vigencia de la promoción: del 8 de septiembre a 30 de octubre de 2017',
 				      description: 'Gana uno de los 3 viajes dobles a Madrid'
 				    },
 				    function(response) {
@@ -66,7 +77,7 @@
 					      } else {
 					        // El usuario cancelo y no publico nada
 							console.log('El usuario cancelo y no publico nada');
-							window.location.href = 'registrar_facebook/'+"0";
+							window.location.href = 'registrar_facebook/'+($cantidad_puntos);
 					      }
 				     }
 			    );
@@ -81,7 +92,7 @@
 					      name: 'Vamonos a españa con Calimax',
 					      link: 'https://www.vamonosaespanaconcalimax.com',
 					      picture: 'https://www.vamonosaespanaconcalimax.com/img/pepsi_fbshare.jpg',
-					      caption: 'Vigencia de la promoción: del 1 de Septiembre al 23 de Octubre de 2017',
+					      caption: 'Vigencia de la promoción: del 8 de septiembre a 30 de octubre de 2017',
 					      description: 'Gana uno de los 3 viajes dobles a Madrid'
 				       },
 				       function(response) {
@@ -92,7 +103,7 @@
 						    } else {
 						        // El usuario cancelo y no publico nada
 								console.log('El usuario cancelo y no publico nada');
-								window.location.href = 'registrar_facebook/'+"0";
+								window.location.href = 'registrar_facebook/'+($cantidad_puntos);
 						    }
 					    }
 				);
@@ -103,7 +114,7 @@
 					      name: 'Vamonos a españa con Calimax',
 					      link: 'https://www.vamonosaespanaconcalimax.com',
 					      picture: 'https://www.vamonosaespanaconcalimax.com/img/pepsi_fbshare.jpg',
-					      caption: 'Vigencia de la promoción: del 1 de Septiembre al 23 de Octubre de 2017',
+					      caption: 'Vigencia de la promoción: del 8 de septiembre a 30 de octubre de 2017',
 					      description: 'Gana uno de los 3 viajes dobles a Madrid'
 				      },
 				      function(response) {
@@ -114,7 +125,7 @@
 						      } else {
 						        // El usuario cancelo y no publico nada
 								console.log('El usuario cancelo y no publico nada');
-								window.location.href = 'registrar_facebook/'+"0";
+								window.location.href = 'registrar_facebook/'+($cantidad_puntos);
 						      }
 				       }
 				);

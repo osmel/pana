@@ -6,10 +6,131 @@ class Home extends CI_Controller {
 		parent::__construct();
 
 		$this->load->model('admin/modelo', 'modelo'); 
+		$this->load->model('registros', 'modelo_registro'); 
 		$this->load->model('admin/catalogo', 'catalogo');  
 		$this->load->library(array('email')); 
 	}
 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////juego//////////////////////
+   function tarjetas(){
+   	$this->load->view( 'juegos/tarjetas');
+/*
+		if ( ($this->session->userdata( 'session_participante' ) !== TRUE ) ||  ( substr_count($this->session->userdata('tarjeta_participante'),';')>=4) )   { //(no registrado) o (registrado y completado)
+			 //redirect('');
+			 $this->load->view( 'juegos/tarjetas');
+		} else {
+			 $this->load->view( 'juegos/tarjetas');
+		}
+*/
+	}
+
+
+	function respuesta_tarjeta(){ 
+		
+		$figura =  $this->input->post( 'figura' );
+		$valor =  $this->input->post( 'valor' );
+
+		
+		//$data['formato'] = $this->session->userdata('tarjeta_participante').$figura.'+'.';';
+		$data['formato'] = $this->session->userdata('tarjeta_participante').$figura.'+'.$valor.'-'.';';
+
+
+		//if guarda bien entonces
+		$data 		  		= $this->security->xss_clean( $data );
+		$guardar	 		= $this->modelo_registro->actualizar_respuesta_tarjeta( $data );
+			//print_r($this->session->userdata('tarjeta_participante')."aaa");
+			//print_r($this->session->userdata('num_ticket_participante'));
+		
+			//print_r($data['formato']);die;
+		if ( $guardar !== FALSE ){  
+			$this->session->set_userdata('tarjeta_participante', $data['formato']);
+		}	
+
+		/*
+		if  ( substr_count($this->session->userdata('tarjeta_participante'),';')<4) {
+				$data['redireccion']='tarjetas';
+		} else if ( strlen($this->session->userdata('juego_participante'))!=3) {
+				$data['redireccion']= 'juegos';		
+				//$data['redireccion']= 'modal_tarjeta';		que esta redireccionará al juego
+		} else {
+				$data['redireccion'] = '';	
+		}	
+		*/
+		
+		
+		echo json_encode($data);        
+                            
+	}
+
+
+/*
+
+SELECT
+AES_DECRYPT(juego, 'gtg5igLZasUC3xNfDlvTGBxxkoMuR6FaCYw5') AS juego,
+AES_DECRYPT(tarjeta, 'gtg5igLZasUC3xNfDlvTGBxxkoMuR6FaCYw5') AS tarjeta,
+
+
+   FROM calimax_registro_participantes
+
+*/
+
+	//formato  fig+resp-tiempo;
+	function respuesta_juego(){ 
+		//$this->load->view( 'dashboard/tarjetas' );
+		$figura =  $this->input->post( 'figura' );
+		$respuesta =  $this->input->post( 'respuesta' );
+		
+
+
+		$data['formato'] = $this->session->userdata('juego_participante').$figura.'+'.$respuesta.'-'.';';
+		
+		//print_r($data['formato']);
+
+
+		//if guarda bien entonces
+		$data 		  		= $this->security->xss_clean( $data );
+		$guardar	 		= $this->modelo_registro->actualizar_respuesta_juego( $data );
+			
+		if ( $guardar !== FALSE ){  
+			$this->session->set_userdata('juego_participante', $data['formato']);
+		}	
+
+		//limpiar nuevamente
+		$this->session->set_userdata('tarjeta_participante', '');
+		$this->session->set_userdata('juego_participante', '');
+		$this->session->set_userdata('num_ticket_participante', '');
+		$this->session->set_userdata('registro_ticket', false );
+
+		$data['redireccion'] = 'record/'.$this->session->userdata('id_participante');	
+		echo json_encode($data);        
+                            
+	}
+
+
+	function record($id_participante){
+	if ( $this->session->userdata( 'session_participante' ) == TRUE ){
+		$data["id_participante"] = $id_participante;
+		$dato 		=   $this->modelo_registro->record_personal($data);
+
+
+ 		//$objeto = $this->modelo->listado_imagenes();
+
+
+					/*
+				$dato->c1 =  (int) ($dato->juego / 100);
+                $dato->c2 =   (int) (($dato->juego % 100) / 10 );
+                $dato->c3 =   (int) (($dato->juego % 10)  );
+                */
+		$this->load->view( 'juegos/record',$dato );
+	}	
+}	
+
+
+	////////////////////////////////////
 
 	public function index(){
 		$this->dashboard();

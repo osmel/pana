@@ -4,7 +4,7 @@
 <?php 
 
 	if (!isset($retorno)) {
-      	$retorno ="registro_ticket";
+      	$retorno ="tarjetas";
     }
 
   
@@ -60,46 +60,16 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<!--<div class="form-group" style="display: none;">
 						<label for="transaccion" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Puntos obtenidos en la compra</label>
 						<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-							<input type="text" class="form-control" id="transaccion" name="transaccion">
+							<input type="text" class="form-control" id="transaccion" name="transaccion" value="1">
 							<span class="help-block" style="color:white;" id="msg_transaccion"> </span> 
 						</div>
 					</div>
+					-->
 
 					
-					<div class="form-group" style="display:none;">
-						<label for="clave_producto" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Clave de producto</label>
-						<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-							<input type="text" class="form-control" id="clave_producto" name="clave_producto" value="1234512345111" placeholder="clave producto">
-							<span class="help-block" style="color:white;" id="msg_clave_producto"> </span> 
-						</div>
-					</div>					
-							
-				
-
-					<div class="form-group" style="display:none;">
-						<label for="id_litraje" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Litraje</label>
-						<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-									<select name="id_litraje" id="id_litraje" class="form-control">
-											<?php foreach ( $estados as $estado ){ ?>
-													<option value="<?php echo $estado->id; ?>"><?php echo $estado->nombre; ?></option>
-											<?php } ?>
-									</select>
-						</div>
-					</div>
-
-					<div class="form-group" style="display:none;">
-						<label for="cantidad" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Cantidad</label>
-						<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-							<input type="text" class="form-control" id="cantidad" name="cantidad" value="1" placeholder="Cantidad">
-							<span class="help-block" style="color:white;" id="msg_cantidad"> </span> 
-						</div>
-					</div>
-					
-
-
 
 		<div class="col-lg-4 col-lg-offset-5 col-md-4 col-md-offset-5 col-sm-12 col-xs-12">
            <span class="help-block" style="color:white;" id="msg_general"> </span>

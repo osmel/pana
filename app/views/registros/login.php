@@ -5,7 +5,7 @@
  <?php 
 
 	if (!isset($retorno)) {
-      	$retorno ="registro_ticket";
+      	$retorno ="tarjetas";
     }
  ?>   
 
@@ -13,7 +13,6 @@
 
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<!-- <h3 class="text-center"><strong><?php echo $this->session->userdata('c2'); ?></strong></h3> -->
 				<h2 class="text-center">Entrar a mi cuenta</h2>
 			</div>
 		</div>
@@ -28,40 +27,22 @@
  					 $attr = array( 'id' => 'form_logueo_participante','name'=>$retorno, 'class' => 'form-horizontal', 'method' => 'POST', 'autocomplete' => 'off', 'role' => 'form' );
 					 echo form_open('validar_login_participante', $attr);
 					?>
-						<!-- <div class="form-group">
+						 <div class="form-group">
 							
 							
 								<hr>
-								<input type="email" class="form-control" id="email" name="email" placeholder="Correo Electrónico">
+								<input type="email" class="form-control" id="email" name="email" placeholder="CORREO ELECTRÓNICO">
 								<span class="help-block" style="color:white;" id="msg_email"> </span> 
 						
 						</div>
-						<div class="form-group">
-							
-								<input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña">
-								<span class="help-block" style="color:white;" id="msg_contrasena"> </span> 
-								
-								<hr>
-
-							
-						</div> -->
-
-						
-
-						<div class="form-group"> 
-								
-								
-								<input type="text" class="form-control" id="nick" name="nick" placeholder="USUARIO">
-								<span class="help-block" style="color:white;" id="msg_nick"> </span> 
-						
-						</div>
+					
 						<div class="form-group">
 							
 								<input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="CONTRASEÑA">
 								<span class="help-block" style="color:white;" id="msg_contrasena"> </span> 
 								
 								
-
+<hr>
 							
 						</div>
 

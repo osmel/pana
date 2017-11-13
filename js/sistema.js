@@ -1,5 +1,8 @@
 jQuery(document).ready(function($) {
 
+ console.log(  (jQuery.base64.decode('MjEx') )   );
+ 
+
 	var opts = {
 		lines: 13, 
 		length: 20, 
@@ -20,6 +23,281 @@ jQuery(document).ready(function($) {
 	};
 
 
+//gestion de usuarios (crear, editar y eliminar )
+	jQuery('body').on('submit','#form_reg_participantes', function (e) {	
+
+		jQuery('#foo').css('display','block');
+		var spinner = new Spinner(opts).spin(target);
+
+		jQuery(this).ajaxSubmit({
+			dataType : 'json',
+			success: function(data){
+				
+				if(data.exito != true){
+					console.log(data);	
+					spinner.stop();
+					jQuery('#foo').css('display','none');
+					
+					jQuery('#msg_nombre').html(data.nombre);
+					jQuery('#msg_apellidos').html(data.apellidos);
+					jQuery('#msg_fecha_nac').html(data.fecha_nac);	
+					
+					jQuery('#msg_id_estado').html(data.id_estado);
+					jQuery('#msg_celular').html(data.celular);					
+					jQuery('#msg_email').html(data.email);
+					
+					
+					jQuery('#msg_pass_1').html(data.pass_1);
+					jQuery('#msg_pass_2').html(data.pass_2);					
+
+					
+					
+					jQuery('#msg_coleccion_id_aviso').html(data.coleccion_id_aviso);					
+					jQuery('#msg_coleccion_id_base').html(data.coleccion_id_base);					
+					jQuery('#msg_coleccion_id_newsletter').html(data.coleccion_id_newsletter);					
+									
+					jQuery('#msg_general').html(data.general);
+				
+
+				}else{
+						$catalogo = e.target.name;
+						spinner.stop();
+						jQuery('#foo').css('display','none');
+						window.location.href = '/'+data.redireccion;    //$catalogo;						
+
+						/*
+						//new ok 
+						var url = "/proc_modal_facebook";
+						//alert(url);
+						jQuery('#modalMessage').modal({
+							  show:'true',
+							remote:url,
+						}); 									        	
+						*/
+
+
+				}
+			} 
+		});
+		return false;
+	});	
+
+
+
+
+ //logueo y recuperar contraseña
+	jQuery("#form_logueo_participante").submit(function(e){
+		jQuery('#foo').css('display','block');
+
+		var spinner = new Spinner(opts).spin(target);
+
+		jQuery(this).ajaxSubmit({
+			dataType : 'json',
+			success: function(data){
+				
+				if(data.exito != true){
+					spinner.stop();
+					jQuery('#foo').css('display','none');
+
+		
+					jQuery('#msg_email').html(data.email);
+					jQuery('#msg_contrasena').html(data.contrasena);
+  				    jQuery('#msg_general').html(data.general);
+				
+
+					
+				}else{
+						$catalogo = e.target.name;
+						spinner.stop();
+						jQuery('#foo').css('display','none');
+						window.location.href = '/'+data.redireccion;    //$catalogo;				
+				}
+			} 
+		});
+		return false;
+	});
+
+
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+/*
+http://josex2r.github.io/jQuery-SlotMachine/
+https://nnattawat.github.io/flip/
+https://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/
+*/
+var hash_url = window.location.pathname;
+
+	if  (hash_url=="/juegos") { //registro ticket
+		var started =0;
+			jQuery.ajax({
+				        url : '/num_conteo',
+				        data : { 
+				        	//started: started,
+				        },
+				        type : 'POST',
+				        dataType : 'json',
+				        success : function(data) {	
+
+				        	started = data.num;
+						        	if (data.tiempo != "0:00") { //es la primera vez que entra es decir es igual a 0:10
+						        		localStorage.setItem('miTiempo',  data.tiempo_comienzo );
+						        	} 
+				        			var timer2 = localStorage.getItem('miTiempo');	
+
+									var interval = setInterval(function() {
+										  var timer = timer2.split(':');
+										  //by parsing integer, I avoid all extra string processing
+										  var minutes = parseInt(timer[0], 10);
+										  var seconds = parseInt(timer[1], 10);
+										  --seconds;
+										  minutes = (seconds < 0) ? --minutes : minutes;
+										  if (minutes < 0) clearInterval(interval);
+										  seconds = (seconds < 0) ? 59 : seconds;
+										  seconds = (seconds < 10) ? '0' + seconds : seconds;
+										  //minutes = (minutes < 10) ?  minutes : minutes;
+										  if (localStorage.getItem('miTiempo').substring(0, 1) !="-"){
+											  $('.countdown').html(minutes + ':' + seconds);
+										  } else {
+										  	  $('.countdown').html('0:00');
+										  }	
+										  timer2 = minutes + ':' + seconds;
+										  localStorage.setItem('miTiempo', minutes + ':' + seconds);
+
+										  if (localStorage.getItem('miTiempo').substring(0, 1) =="-"){
+										  	  $('.countdown').html('0:00');
+										  }	
+										  
+
+										  	if (localStorage.getItem('miTiempo') =="0:00"){ //si llego al final entonces parar las 3 barajas
+													machine4.stop();
+													machine5.stop();
+													machine6.stop();
+													started=0;
+
+													jQuery.ajax({ //guardar en la cookie el conteo
+													        url : '/num_conteo',
+													        data : { 
+													        	started: started,
+													        },
+													        type : 'POST',
+													        dataType : 'json',
+													        success : function(data) {	
+
+													        	started = data.num;
+
+												        	    var url = "/proc_modal_juego/"+jQuery.base64.encode(minutes + ':' + seconds)+'/'+jQuery.base64.encode(1);
+																jQuery('#modalMessage').modal({
+																	  show:'true',
+																	remote:url,
+																}); 									        	
+													        }
+													});	
+											}
+									}, 1000)  //fin del tiempo interval
+								
+								
+								//cuando se oculta la ventana modal de juego redirige al 
+								jQuery("body").on('hide.bs.modal','#modalMessage[ventana="juegos"]',function(e){	
+									$catalogo = jQuery(this).attr('valor'); //e.target.name;
+									window.location.href = '/'+$catalogo;						    
+								});	
+
+
+								var machine4 = $("#casino1").slotMachine({
+									active	: (started == 3) ? 0 : Math.trunc(parseInt( jQuery.base64.decode(jQuery("#cripto").val())   )/100  ) ,
+									delay	: 1000,
+									randomize: function(index){
+										return  isNaN(jQuery.base64.decode(jQuery("#cripto").val()) ) ? 0 : Math.trunc(parseInt( jQuery.base64.decode(jQuery("#cripto").val())   )/100  ) -1; 
+									} 
+
+								});
+
+								var machine5 = $("#casino2").slotMachine({
+									active	: (started >= 2) ? 1 : Math.trunc( (parseInt( jQuery.base64.decode(jQuery("#cripto").val())   ) % 100  ) /10 ),
+									delay	: 1000,
+									randomize: function(index){
+										return  isNaN(jQuery.base64.decode(jQuery("#cripto").val()) ) ? 1 : Math.trunc( (parseInt( jQuery.base64.decode(jQuery("#cripto").val())   ) % 100  ) /10 ) -1; 
+									} 
+
+									 
+								});
+
+								machine6 = $("#casino3").slotMachine({
+									active	: (started >= 1) ? 2 : Math.trunc( (parseInt( jQuery.base64.decode(jQuery("#cripto").val())   ) % 100  ) % 10 ),
+									delay	: 1000,
+									randomize: function(index){
+										return  isNaN(jQuery.base64.decode(jQuery("#cripto").val()) ) ? 2 : Math.trunc( (parseInt( jQuery.base64.decode(jQuery("#cripto").val())   ) % 100  ) % 10 ) -1 ; 
+									} 
+
+								});
+
+								switch (parseInt(started) ){
+									case 3:
+										machine4.shuffle();
+										machine5.shuffle();
+										machine6.shuffle();
+										break;
+									case 2:
+										machine5.shuffle();
+										machine6.shuffle();
+										break;
+									case 1:
+										machine6.shuffle();
+										break;
+								}
+
+								$("#botonParar").click(function(){
+									switch (parseInt(started) ){
+										case 3:
+											machine4.stop();
+											break;
+										case 2:
+											machine5.stop();
+											break;
+										case 1:
+											machine6.stop();
+											break;
+									}
+									started--;
+
+
+
+									jQuery.ajax({ //guardar en la cookie el conteo
+									        url : '/num_conteo',
+									        data : { 
+									        	started: started,
+									        },
+									        type : 'POST',
+									        dataType : 'json',
+									        success : function(data) {	
+
+									        	started = data.num;
+
+									        		if (started==0){
+										        		var url = "/proc_modal_juego/"+jQuery.base64.encode(localStorage.getItem('miTiempo'))+'/'+jQuery.base64.encode(1);
+															jQuery('#modalMessage').modal({
+																  show:'true',
+																remote:url,
+															}); 									        	
+													}
+									        	
+									        }
+									});	
+
+								});  //fin de boton parar
+				        	
+				        } //fin del success
+			});	 // fin jQuery.ajax
+	}  //fin de registro de ticket
+
+
+
+
+
+		////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
 	
         jQuery('.icheck1').each(function() {
             var checkboxClass = jQuery(this).attr('data-checkbox') ? jQuery(this).attr('data-checkbox') : 'icheckbox_minimal-grey';
@@ -116,42 +394,36 @@ jQuery(document).ready(function($) {
 					jQuery('#msg_monto').html(data.monto);
 					jQuery('#msg_ticket').html(data.ticket);
 					jQuery('#msg_transaccion').html(data.transaccion);
-					jQuery('#msg_clave_producto').html(data.clave_producto);
 					jQuery('#msg_compra').html(data.compra);
-					jQuery('#msg_id_litraje').html(data.id_litraje);
-					jQuery('#msg_cantidad').html(data.cantidad);					
   				    jQuery('#msg_general').html(data.general);
-				
-
-
 				}else{
 
 
 						spinner.stop();
 						jQuery('#foo').css('display','none');
-
+						/*
 						var transaccion = jQuery('#transaccion').val();
 
 
 						if (transaccion<100) {
-							var url = "/herdez2/proc_modal_cero_puntos";	
+							var url = "/proc_modal_cero_puntos";	
 
 						} else {
-							var url = "/herdez2/proc_modal_instrucciones";	
+							var url = "/proc_modal_instrucciones";	
 						}
 						
 
 						jQuery('#modalMessage').modal({
 						  	show:'true',
 							remote:url,
-						}); 	
+						}); */	
 
-						/*
+						
 						$catalogo = e.target.name;
 						spinner.stop();
 						jQuery('#foo').css('display','none');
-						window.location.href = '/herdez2/'+$catalogo;				
-						*/
+						window.location.href = '/'+$catalogo;				
+						
 
 				}
 			} 
@@ -170,7 +442,7 @@ jQuery("body").on('hide.bs.modal','#modalMessage[ventana="redi_ticket"]',functio
 						} else {
 							$catalogo = jQuery(this).attr('valor'); //e.target.name;
 						}
-						window.location.href = '/herdez2/'+$catalogo;						    
+						window.location.href = '/'+$catalogo;						    
 
 
 });
@@ -182,71 +454,14 @@ jQuery("body").on('hide.bs.modal','#modalMessage[ventana="redi_ticket"]',functio
 
 
 
-	//gestion de usuarios (crear, editar y eliminar )
-	jQuery('body').on('submit','#form_reg_participantes', function (e) {	
-
-
-		jQuery('#foo').css('display','block');
-		var spinner = new Spinner(opts).spin(target);
-
-		jQuery(this).ajaxSubmit({
-			dataType : 'json',
-			success: function(data){
-				if(data != true){
-					
-					spinner.stop();
-					jQuery('#foo').css('display','none');
-					
-					jQuery('#msg_nombre').html(data.nombre);
-					jQuery('#msg_apellidos').html(data.apellidos);
-					jQuery('#msg_nick').html(data.nick);
-					jQuery('#msg_email').html(data.email);
-					jQuery('#msg_calle').html(data.calle);
-					jQuery('#msg_numero').html(data.numero);
-					jQuery('#msg_colonia').html(data.colonia);
-					jQuery('#msg_municipio').html(data.municipio);
-					jQuery('#msg_cp').html(data.cp);					
-					jQuery('#msg_ciudad').html(data.ciudad);
-
-					jQuery('#msg_id_estado').html(data.id_estado);
-					jQuery('#msg_pass_1').html(data.pass_1);
-					jQuery('#msg_pass_2').html(data.pass_2);					
-
-					jQuery('#msg_celular').html(data.celular);					
-					jQuery('#msg_telefono').html(data.telefono);					
-					jQuery('#msg_coleccion_id_aviso').html(data.coleccion_id_aviso);					
-					jQuery('#msg_coleccion_id_base').html(data.coleccion_id_base);					
-					jQuery('#msg_fecha_nac').html(data.fecha_nac);					
-					jQuery('#msg_general').html(data.general);
-				
-
-				}else{
-						$catalogo = e.target.name;
-						spinner.stop();
-						jQuery('#foo').css('display','none');
-						//window.location.href = '/herdez2/'+$catalogo;				
-
-						//new ok 
-						var url = "/herdez2/proc_modal_facebook";
-						//alert(url);
-						jQuery('#modalMessage').modal({
-							  show:'true',
-							remote:url,
-						}); 									        	
-
-
-				}
-			} 
-		});
-		return false;
-	});	
+	
 
 	//new ok si oculta la modal del facebook, o la ignora, entonces va directo al registro de ticket
 
 	jQuery("body").on('hide.bs.modal','#modalMessage[ventana="facebook"]',function(e){	
 		$catalogo = jQuery(this).attr('valor'); //e.target.name;
-		window.location.href = '/herdez2/'+$catalogo;						    
-		//window.location.href = '/herdez2/registrar_facebook/0';
+		window.location.href = '/'+$catalogo;						    
+		//window.location.href = '/registrar_facebook/0';
 	});	
 
 
@@ -285,324 +500,13 @@ jQuery("body").on('hide.bs.modal','#modalMessage[ventana="redi_ticket"]',functio
 						$catalogo = e.target.name;
 						spinner.stop();
 						jQuery('#foo').css('display','none');
-						window.location.href = '/herdez2/'+$catalogo;				
+						window.location.href = '/'+$catalogo;				
 				}
 			} 
 		});
 		return false;
 	});	
 
-
-//logueo y recuperar contraseña
-	jQuery("#form_logueo_participante").submit(function(e){
-		jQuery('#foo').css('display','block');
-
-		var spinner = new Spinner(opts).spin(target);
-
-		jQuery(this).ajaxSubmit({
-			dataType : 'json',
-			success: function(data){
-				
-				if(data != true){
-					spinner.stop();
-					jQuery('#foo').css('display','none');
-
-		
-					jQuery('#msg_email').html(data.email);
-					jQuery('#msg_contrasena').html(data.contrasena);
-  				    jQuery('#msg_general').html(data.general);
-				
-
-					
-				}else{
-						$catalogo = e.target.name;
-						spinner.stop();
-						jQuery('#foo').css('display','none');
-						window.location.href = '/herdez2/'+$catalogo;				
-				}
-			} 
-		});
-		return false;
-	});
-
-
-
-
-
-
-var hash_url = window.location.pathname;
-
-
-		
-
-
-
-//http://yises.com/blog/2015/06/25/problema-con-el-localstorage-y-modo-incognito-en-safari/
-//https://fernetjs.com/2012/12/almacenando-en-el-cliente-localstorage-sessionstorage-y-cookies/
-
-//if (window.localStorage) 
-//https://developers.facebook.com/docs/facebook-login/web
-//https://developers.facebook.com/docs/javascript/advanced-setup
-//https://www.facebook.com/sharer/sharer.php?u=http://67.205.182.175/
-
-{
-				if  (hash_url=="/herdez2/registro_ticket") { //registro ticket
-					var started =0;
-						jQuery.ajax({
-							        url : '/num_conteo',
-							        data : { 
-							        	//started: started,
-							        },
-							        type : 'POST',
-							        dataType : 'json',
-							        success : function(data) {	
-
-							        	started = data.num;
-							        	//console.log(started);
-
-									    if   (  (data.registro_ticket==true) )  {  //validar si le toca jugar o registrar ticket 	 	        	
-
-										        	//console.log(localStorage.getItem('miTiempo'));
-
-										        	//timer2 = (localStorage.getItem('miTiempo') !=0) ?  localStorage.getItem('miTiempo') : "5:00";
-
-									        	if (data.tiempo != "0:00") { //es la primera vez que entra es decir es igual a 5:00
-									        		localStorage.setItem('miTiempo',  data.tiempo_comienzo );
-									        	} 
-
-							        			var timer2 = localStorage.getItem('miTiempo');	
-							        	
-										
-												var interval = setInterval(function() {
-
-
-													  var timer = timer2.split(':');
-													  //by parsing integer, I avoid all extra string processing
-													  var minutes = parseInt(timer[0], 10);
-													  var seconds = parseInt(timer[1], 10);
-													  --seconds;
-													  minutes = (seconds < 0) ? --minutes : minutes;
-													  if (minutes < 0) clearInterval(interval);
-													  seconds = (seconds < 0) ? 59 : seconds;
-													  seconds = (seconds < 10) ? '0' + seconds : seconds;
-													  //minutes = (minutes < 10) ?  minutes : minutes;
-													  if (localStorage.getItem('miTiempo').substring(0, 1) !="-"){
-														  $('.countdown').html(minutes + ':' + seconds);
-													  } else {
-													  	  $('.countdown').html('0:00');
-													  }	
-
-													  timer2 = minutes + ':' + seconds;
-													  localStorage.setItem('miTiempo', minutes + ':' + seconds);
-
-													  if (localStorage.getItem('miTiempo').substring(0, 1) =="-"){
-													  	  $('.countdown').html('0:00');
-													  }	
-
-
-
-
-
-													  	if (localStorage.getItem('miTiempo') =="0:00"){
-																machine4.stop();
-																machine5.stop();
-																machine6.stop();
-																started=0;
-
-																jQuery.ajax({ //guardar en la cookie el conteo
-																        url : '/num_conteo',
-																        data : { 
-																        	started: started,
-																        },
-																        type : 'POST',
-																        dataType : 'json',
-																        success : function(data) {	
-
-																        	started = data.num;
-
-															        	    var url = "/herdez2/proc_modal_ticket/"+jQuery.base64.encode(minutes + ':' + seconds)+'/'+jQuery.base64.encode(1);
-																			jQuery('#modalMessage').modal({
-																				  show:'true',
-																				remote:url,
-																			}); 									        	
-
-																			
-																        	
-																        }
-																});	
-
-														}
-
-												}, 1000)  //fin del tiempo interval
-
-
-
-											//jQuery('body').on('click','#deleteUserSubmit[name="procesando_confirmar_pedido"]', function (e) {
-											jQuery('body').on('click','#deleteUserSubmit', function (e) {	
-												$catalogo = e.target.name;
-												window.location.href = '/herdez2/'+$catalogo;	
-											});
-
-
-											jQuery("body").on('hide.bs.modal','#modalMessage[ventana="redireccion"]',function(e){	
-												$catalogo = jQuery(this).attr('valor'); //e.target.name;
-												window.location.href = '/herdez2/'+$catalogo;						    
-											});	
-
-											
-											jQuery('body').on('submit','#form_sino', function (e) {	
-												jQuery('#foo').css('display','block');
-
-												var spinner = new Spinner(opts).spin(target);
-
-												jQuery(this).ajaxSubmit({
-													success: function(data){
-														
-														if(data != true){
-															spinner.stop();
-															jQuery('#foo').css('display','none');
-															jQuery('#messages').css('display','block');
-															jQuery('#messages').addClass('alert-danger');
-															jQuery('#messages').html(data);
-															jQuery('html,body').animate({
-																'scrollTop': jQuery('#messages').offset().top
-															}, 1000);
-														}else{
-																$catalogo = e.target.name;
-																spinner.stop();
-																jQuery('#foo').css('display','none');
-																window.location.href = '/herdez2/'+$catalogo;				
-														}
-													} 
-												});
-												return false;
-											});
-
-
-
-
-
-
-
-											var machine4 = $("#casino1").slotMachine({
-												active	: (started == 3) ? 0 : Math.trunc(parseInt( jQuery.base64.decode(jQuery("#cripto").val())   )/100  ) ,
-												delay	: 1000,
-												randomize: function(index){
-													return  isNaN(jQuery.base64.decode(jQuery("#cripto").val()) ) ? 0 : Math.trunc(parseInt( jQuery.base64.decode(jQuery("#cripto").val())   )/100  ) -1; 
-												} 
-
-											});
-
-											var machine5 = $("#casino2").slotMachine({
-												active	: (started >= 2) ? 1 : Math.trunc( (parseInt( jQuery.base64.decode(jQuery("#cripto").val())   ) % 100  ) /10 ),
-												delay	: 1000,
-												randomize: function(index){
-													return  isNaN(jQuery.base64.decode(jQuery("#cripto").val()) ) ? 1 : Math.trunc( (parseInt( jQuery.base64.decode(jQuery("#cripto").val())   ) % 100  ) /10 ) -1; 
-												} 
-
-												 
-											});
-
-											machine6 = $("#casino3").slotMachine({
-												active	: (started >= 1) ? 2 : Math.trunc( (parseInt( jQuery.base64.decode(jQuery("#cripto").val())   ) % 100  ) % 10 ),
-												delay	: 1000,
-												randomize: function(index){
-													return  isNaN(jQuery.base64.decode(jQuery("#cripto").val()) ) ? 2 : Math.trunc( (parseInt( jQuery.base64.decode(jQuery("#cripto").val())   ) % 100  ) % 10 ) -1 ; 
-												} 
-
-											});
-
-											
-
-											//$("#botonBaraja").click(function(){
-												
-												//console.log(started);
-
-												switch (parseInt(started) ){
-													case 3:
-														machine4.shuffle();
-														machine5.shuffle();
-														machine6.shuffle();
-														break;
-													case 2:
-														machine5.shuffle();
-														machine6.shuffle();
-														break;
-													case 1:
-														machine6.shuffle();
-														break;
-												}
-
-
-
-
-
-											//});
-
-											$("#botonParar").click(function(){
-												switch (parseInt(started) ){
-													case 3:
-														machine4.stop();
-														break;
-													case 2:
-														machine5.stop();
-														break;
-													case 1:
-														machine6.stop();
-														break;
-												}
-												started--;
-
-
-
-												jQuery.ajax({ //guardar en la cookie el conteo
-												        url : '/num_conteo',
-												        data : { 
-												        	started: started,
-												        },
-												        type : 'POST',
-												        dataType : 'json',
-												        success : function(data) {	
-
-												        	started = data.num;
-
-												        		if (started==0){
-													        		var url = "/herdez2/proc_modal_ticket/"+jQuery.base64.encode(localStorage.getItem('miTiempo'))+'/'+jQuery.base64.encode(1);
-																		jQuery('#modalMessage').modal({
-																			  show:'true',
-																			remote:url,
-																		}); 									        	
-																}
-
-
-
-
-
-												        	
-												        }
-												});	
-
-
-											});  //fin de boton parar
-
-
-
-										}  // aqui termina modulo de juego			
-							        	
-							        } //fin del success
-						});	 // fin jQuery.ajax
-				}  //fin de registro de ticket
-
-
-
-}
-/*
-else {
-  throw new Error('Tu Browser no soporta LocalStorage!');
-}*/
-
-
-		
 
 		
 

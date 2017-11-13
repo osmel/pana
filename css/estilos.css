@@ -559,7 +559,7 @@ p.datos span:nth-child(2) {
     height: auto;
     font-size: 15px;
     font-weight: bold;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     background-color: rgba(200, 172, 112, 0.69);
     border: 0px;
   
@@ -698,7 +698,7 @@ p.amarillo {
     color: #ffffff !important;
     height: auto;
     font-size: 22px;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     background-color: rgba(200, 172, 112, 0.69);
     border: 0px;
   

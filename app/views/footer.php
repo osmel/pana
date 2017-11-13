@@ -78,6 +78,9 @@
 
 	<script src="<?php echo base_url(); ?>js/fechaDropdowns/jquery.date-dropdowns.js"></script>
 
+	<!-- Juego de flipear tarjetas -->
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.flip.js"></script>
+
   <!-- nuestro js principal -->
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/sistema.js"></script>

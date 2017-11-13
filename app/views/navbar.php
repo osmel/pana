@@ -72,7 +72,7 @@
 									</span>
 								</li>
 								<li>
-									<a href="<?php echo base_url(); ?>registro_ticket" class="">INGRESAR</a> 
+									<a href="<?php echo base_url(); ?>ingresar_usuario" class="">INGRESAR</a> 
 								</li>
 								<li class="ocultarpunto">
 									<span class="punto">

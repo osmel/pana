@@ -16,7 +16,7 @@
 	<table border="0" cellspacing="0" cellpadding="0" style="margin:30px auto; background-color:white; padding:0px; max-width:580px; width:100%">
 	  
 	  <tr>
-	   <!-- <img src="https://www.vamonosaespanaconcalimax.com/img/mailh.png"> -->
+	   <img src="https://www.vamonosaespanaconcalimax.com/img/mailh.png">
 	  </tr>
 	  <tr>
 	   	 <td scope="row" style="text-align:center">
@@ -28,7 +28,7 @@
 	   	 </td>
 	  </tr>
 	  <tr>
-	   	<!-- <img src="https://www.vamonosaespanaconcalimax.com/img/mailf.png"> -->
+	   	<img src="https://www.vamonosaespanaconcalimax.com/img/mailf.png">
 	  </tr>
 	<!--   <tr style="background-color:#122145;">
 	    <td scope="row" style="border-top:5px solid #ebbb34; padding: 15px;">
