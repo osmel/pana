@@ -130,6 +130,31 @@
             localStorage.setItem('virada',  0 );
         }
 
+
+
+           jQuery('body').on('click','.btn_respuesta', function (e) {  
+                
+                  e.preventDefault();
+                    jQuery.ajax({ //guardar en la cookie el conteo
+                            url : '/respuesta_juego',
+                            data : { 
+                                   figura: $(this).attr('fig'),
+                                respuesta: $(this).attr('resp'),
+                                
+                            },
+                            type : 'POST',
+                            dataType : 'json',
+                            success : function(data) {  
+                                  localStorage.setItem('virada',  0 );
+                                  window.location.href = '/'+data.redireccion;        
+                                  return false;
+
+                            }
+
+                    }); 
+            });
+             
+
           if ( parseInt(localStorage.getItem('virada')) >=2) {
                // alert('aa');
                 //localStorage.setItem('virada',  0 );
@@ -166,6 +191,8 @@
                                             var url = "/proc_modal_juego";  
                                             
                                             jQuery('#modalMessage').modal({
+                                                backdrop: 'static',
+                                                keyboard: false, 
                                                 show:'true',
                                                 remote:url,
                                             });
@@ -176,26 +203,8 @@
 
 
 
-            jQuery('body').on('click','.btn_respuesta', function (e) {  
-                  e.preventDefault();
-                    jQuery.ajax({ //guardar en la cookie el conteo
-                            url : '/respuesta_juego',
-                            data : { 
-                                   figura: $(this).attr('fig'),
-                                respuesta: $(this).attr('resp'),
-                                
-                            },
-                            type : 'POST',
-                            dataType : 'json',
-                            success : function(data) {  
-                                  localStorage.setItem('virada',  0 );
-                                  window.location.href = '/'+data.redireccion;        
-                                  return false;
+                     
 
-                            }
-
-                    }); 
-            });
                 
 
             
