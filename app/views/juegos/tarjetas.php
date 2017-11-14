@@ -79,7 +79,7 @@
 
 <!--imagen 1 -->
 <div id="pregunta" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="container preguntas" style="padding:80px">
+    <div class="preguntas" style="padding:80px">
         <div class="col-md-7 text-center contenedorpregu">
         	<span class="titulopop">
         		Verdadera Identidad de CYBORG

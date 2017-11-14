@@ -34,7 +34,7 @@
                         <ul class="dropdown-menu dropdown-menu-default">
                         	<li>
                                 <a href="<?php echo base_url(); ?>record/<?php echo $this->session->userdata('id_participante'); ?>" >
-                                    <i class="icon-user"></i> Mis Tickets
+                                    <i class="icon-user"></i> Mis Marcador
                                 </a>
                             </li>                            
                             <li>
@@ -71,7 +71,20 @@
 									&#9679;
 									</span>
 								</li>
+
+								<?php if ($this->session->userdata('session_participante') == true) { ?>
 								<li>
+									<a href="<?php echo base_url(); ?>ingresar_usuario" class="">PARTICIPAR</a> 
+								</li>
+								<li class="ocultarpunto">
+									<span class="punto">
+									&#9679;
+									</span>
+								</li>
+					
+					             <?php }else{ ?>
+									
+					             <li>
 									<a href="<?php echo base_url(); ?>ingresar_usuario" class="">INGRESAR</a> 
 								</li>
 								<li class="ocultarpunto">
@@ -79,7 +92,15 @@
 									&#9679;
 									</span>
 								</li>
-								<li>								
+
+					             <?php } ?> 
+
+								
+								<?php if ($this->session->userdata('session_participante') == true) { ?>
+									
+										
+					             <?php }else{ ?>
+										<li>								
 									<a href="<?php echo base_url(); ?>registro_usuario" class="">CREAR CUENTA</a>
 								</li>
 								<li class="ocultarpunto">
@@ -87,6 +108,8 @@
 									&#9679;
 									</span>
 								</li>
+					             <?php } ?> 
+								
 								<li>
 									<a href="<?php echo base_url(); ?>aviso" class="">AVISO DE PRIVACIDAD</a> 
 								</li>
@@ -100,11 +123,11 @@
 								</li>
 
 			<?php if ($this->session->userdata('session_participante') == true) { ?>
-			<li>
+			<!-- <li>
 				<a href="<?php echo base_url(); ?>record/<?php echo $this->session->userdata('id_participante'); ?>" >
 	            	<i class="icon-user"></i> Mis Tickets
 	        	</a>
-	        </li>
+	        </li> -->
 	        <?php } ?>
 			<?php if ($this->session->userdata('session_participante') == true) { ?>
 				

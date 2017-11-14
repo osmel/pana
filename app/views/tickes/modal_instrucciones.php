@@ -8,31 +8,25 @@
  ?>
   
 <?php //echo form_open('validar_confirmar_juego', array('class' => 'form-horizontal','id'=>'form_sino','name'=>$retorno, 'method' => 'POST', 'role' => 'form', 'autocomplete' => 'off' ) ,   $hidden ); ?>
-	<div class="modal-header">
-		<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->		
-	</div>
-	<div class="modal-body">
+	
 		
 
-<div class="container preguntas" style="padding:80px">
-        <div class="col-md-7 text-center contenedorpregu">
-        	<span class="titulopop">
+<div class="preguntas">
+        <div class="col-md-12 text-center">
+        	<span class="titular1">
+        		RESPONDE A LA SIGUIENTE TRIVIA PARA OBTENER TUS PUNTOS
+        	</span>
+        	<span class="pregunta">
         		Verdadera Identidad de CYBORG
         	</span>
-        	<ul class="listapop">
+        	<ul class="opcionesrespuesta">
         		<li>A) Victor stone</li>
         		<li>B) Barry Allen</li>
         		<li>C) Bruce Wayne</li>
         	</ul>
         	
         </div>
-        <!--
-	        <div class="col-md-5">
-	        	<img src="<?php echo base_url()?>img/cartas/card11.png">
-	        </div> 
-	     -->
-
-    </div> 
+</div> 
 
 
 
@@ -44,18 +38,18 @@
 					CONTINUAR
 				
 			</button> -->
-			<div class="col-md-4 text-center">
-                <button class="btn_respuesta" fig="1" resp="1"><img src="<?php echo base_url()?>img/cartas/btn1.png"></button>
+			<div class="col-md-6 text-center">
+                <button class="btn_respuesta" fig="1" resp="1">A)</button>
         	</div>
-        	<div class="col-md-4 text-center">
-        		<button class="btn_respuesta" fig="1" resp="2"><img src="<?php echo base_url()?>img/cartas/btn2.png"></button>
+        	<div class="col-md-6 text-center">
+        		<button class="btn_respuesta" fig="1" resp="2">B)</button>
         	</div>
-        	<div class="col-md-4 text-center">
+        	<!-- <div class="col-md-4 text-center">
                 <button class="btn_respuesta" fig="1" resp="3"><img src="<?php echo base_url()?>img/cartas/btn3.png"></button>
         	</div>
         	<div class="col-md-12 text-center">
 	        	<span class="reloj"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="r1"></span></span>
-	        </div>
+	        </div> -->
 		</div>
 	</div>
 

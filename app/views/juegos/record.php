@@ -16,13 +16,13 @@
 	</div>
 
 	<div class="">								
-		<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12 mimarcador transparenciaformularios">
+		<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12" style="margin-top:50px">
 			<?php 
 
-			echo 'Tickets registrados: '.$cantidad.'<br/>';	
+			echo '<div class="col-md-6 text-center"><span class="titulosmarcador">Tickets registrados: </span></div><div class="col-md-6"><div class="puntoscontenedor">'.$cantidad.'</div></div>';	
 
 			//LOCATE()
-			echo 'Tickets registrados: '.$total_iguales.'<br/>';	
+			echo '<div class="col-md-6 text-center"><span class="titulosmarcador">Puntos acumulados: </span></div><div class="col-md-6"><div class="puntoscontenedor">'.$total_iguales.'</div></div>';	
 			
 
 			
