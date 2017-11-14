@@ -38,37 +38,50 @@ function validar_registros(){
 
 			$this->form_validation->set_rules( 'nombre', 'Nombre', 'trim|required|callback_nombre_valido|min_length[3]|max_length[50]|xss_clean');
 			$this->form_validation->set_rules( 'apellidos', 'Apellido(s)', 'trim|required|callback_nombre_valido|min_length[3]|max_length[50]|xss_clean');
-			$this->form_validation->set_rules( 'fecha_nac', 'Fecha de Nacimiento', 'trim|required|callback_valid_nacimiento[fecha_nac]|xss_clean');
-			$this->form_validation->set_rules('id_estado', 'Ciudad de compra', 'required|callback_valid_option|xss_clean');
-			$this->form_validation->set_rules( 'celular', 'Celular', 'trim|required|numeric|min_length[10]|callback_valid_phone|xss_clean');
 			$this->form_validation->set_rules( 'email', 'Correo', 'trim|required|valid_email|xss_clean');
+			$this->form_validation->set_rules( 'fecha_nac', 'Fecha de Nacimiento', 'trim|required|callback_valid_nacimiento[fecha_nac]|xss_clean');
+			$this->form_validation->set_rules( 'calle', 'Calle', 'trim|required|min_length[3]|max_length[100]|xss_clean');
+			$this->form_validation->set_rules( 'numero', 'Número', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+			$this->form_validation->set_rules( 'colonia', 'Colonia', 'trim|required|min_length[3]|max_length[100]|xss_clean');
+			$this->form_validation->set_rules( 'municipio', 'Municipio', 'trim|required|min_length[3]|max_length[100]|xss_clean');
 			
+			$this->form_validation->set_rules( 'cp', 'CP', 'trim|required|min_length[2]|max_length[100]|xss_clean');
+			$this->form_validation->set_rules('id_estado', 'Ciudad', 'required|callback_valid_option|xss_clean');
+			$this->form_validation->set_rules( 'celular', 'Celular', 'trim|required|numeric|min_length[10]|callback_valid_phone|xss_clean');
+			$this->form_validation->set_rules( 'telefono', 'Teléfono', 'trim|required|numeric|min_length[8]|callback_valid_phone|xss_clean');
+			$this->form_validation->set_rules( 'id_estado_compra', 'Cd. de compra', 'required|callback_valid_option|xss_clean');
+			$this->form_validation->set_rules( 'nick', 'NickName', 'trim|required|min_length[3]|max_length[50]|callback_cadena_noacepta|xss_clean');
 			$this->form_validation->set_rules( 'pass_1', 'La contraseña', 'required|trim|min_length[8]|xss_clean');
 			$this->form_validation->set_rules( 'pass_2', 'Confirmación de contraseña', 'required|trim|min_length[8]|xss_clean');
-							
-			
+
 			$this->form_validation->set_rules('coleccion_id_aviso', 'Aviso de privacidad', 'callback_accept_terms[coleccion_id_aviso]');	
 			$this->form_validation->set_rules('coleccion_id_base', 'Bases legales', 'callback_accept_terms[coleccion_id_base]');	
-			$this->form_validation->set_rules('coleccion_id_newsletter', 'Recibir Promociones', 'callback_accept_terms[coleccion_id_base]');	
-			
-			
+		
+
 			$mis_errores=array(
 						"exito" => false,
 						"general" => '',
+
 					    "nombre" =>  '',
 					    "apellidos" =>  '',
+					    "email" =>  '',
 					    "fecha_nac" =>  '',
+					    "calle" =>  '',
+					    "numero" =>  '',
+					    "colonia" =>  '',
+					    "municipio" =>  '',
 
+					    "cp" =>  '',
 					    "id_estado" =>  '',
 					    "celular" =>  '',
-					    "email" =>  '',
-
+					    "telefono" =>  '',
+					    "id_estado_compra" =>  '',
+						"nick" =>  '',
 					    'pass_1'=> '',
 					    'pass_2'=>  '',
 
 					    "coleccion_id_aviso" =>  '',
 					    "coleccion_id_base" =>  '',
-					    "coleccion_id_newsletter" =>  '',
 				);
 			
 
@@ -84,13 +97,22 @@ function validar_registros(){
 					if ( $login_check != FALSE ){		
 						$usuario['nombre']   			= $this->input->post( 'nombre' );
 						$usuario['apellidos']   		= $this->input->post( 'apellidos' );
-
-						$usuario['fecha_nac']   		= $this->input->post( 'fecha_nac' );
-						$usuario['id_estado']   		= $this->input->post( 'id_estado' );
-
-						$usuario['celular']   		= $this->input->post( 'celular' );
 						$usuario['email']   			= $this->input->post( 'email' );
+						$usuario['fecha_nac']   		= $this->input->post( 'fecha_nac' );
+						$usuario['calle']   			= $this->input->post( 'calle' );
+						$usuario['numero']   			= $this->input->post( 'numero' );
+						$usuario['colonia']   			= $this->input->post( 'colonia' );
+						$usuario['municipio']   		= $this->input->post( 'municipio' );
+						
+						$usuario['cp']   			= $this->input->post( 'cp' );
+						$usuario['id_estado']   		= $this->input->post( 'id_estado' );
+						$usuario['celular']   		= $this->input->post( 'celular' );
+						$usuario['telefono']   		= $this->input->post( 'telefono' );
 						$usuario['contrasena']				= $this->input->post( 'pass_1' );
+						$usuario['id_estado_compra']   		= $this->input->post( 'id_estado_compra' );
+						$usuario['nick']   				= $this->input->post( 'nick' );
+
+						
 
 						$usuario['id_perfil']   		= 3; //significa participante
 
@@ -207,20 +229,27 @@ function validar_registros(){
 				$campos = array(
 				    "nombre" => 'Nombre',
 				    "apellidos" => 'Apellido(s)',
+				    "email" => 'Correo',
 				  	"fecha_nac" => 'Fecha de Nacimiento',  
+				  	"calle" => 'Calle',
+				    "numero" => 'Número',
+				    "colonia" => 'Colonia',
+				    "municipio" => 'Municipio',
 
-					"id_estado" => 'Ciudad de compra',
+					"cp" => 'CP',
+					"id_estado" => 'Ciudad',
 					"celular" => 'Celular',
-					"email" => 'Correo',
-
+					"telefono" => 'Teléfono',
+					"id_estado_compra" =>  'Cd.',
+					"nick" => 'NickName',
 				    'pass_1'=>'La Contraseña',
 				    'pass_2'=>'Confirmación',
 				    
 				    "coleccion_id_aviso" => 'Aviso de privacidad',
 				    "coleccion_id_base" => 'Bases legales',
-				    "coleccion_id_newsletter" => 'Recibir Promociones',
-				  
+				    
 				);
+
 
 
 

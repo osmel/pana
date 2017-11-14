@@ -40,11 +40,20 @@ jQuery(document).ready(function($) {
 					
 					jQuery('#msg_nombre').html(data.nombre);
 					jQuery('#msg_apellidos').html(data.apellidos);
+					jQuery('#msg_email').html(data.email);
 					jQuery('#msg_fecha_nac').html(data.fecha_nac);	
-					
+
+					jQuery('#msg_calle').html(data.calle);
+					jQuery('#msg_numero').html(data.numero);
+					jQuery('#msg_colonia').html(data.colonia);
+					jQuery('#msg_municipio').html(data.municipio);
+					jQuery('#msg_cp').html(data.cp);	
+
 					jQuery('#msg_id_estado').html(data.id_estado);
 					jQuery('#msg_celular').html(data.celular);					
-					jQuery('#msg_email').html(data.email);
+					jQuery('#msg_telefono').html(data.telefono);
+ 				    jQuery('#msg_id_estado_compra').html(data.id_estado_compra);  
+					jQuery('#msg_nick').html(data.nick);
 					
 					
 					jQuery('#msg_pass_1').html(data.pass_1);
@@ -54,7 +63,6 @@ jQuery(document).ready(function($) {
 					
 					jQuery('#msg_coleccion_id_aviso').html(data.coleccion_id_aviso);					
 					jQuery('#msg_coleccion_id_base').html(data.coleccion_id_base);					
-					jQuery('#msg_coleccion_id_newsletter').html(data.coleccion_id_newsletter);					
 									
 					jQuery('#msg_general').html(data.general);
 				

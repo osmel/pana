@@ -130,7 +130,7 @@
             localStorage.setItem('virada',  0 );
         }
 
-
+        
 
            jQuery('body').on('click','.btn_respuesta', function (e) {  
                 
